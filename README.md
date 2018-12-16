@@ -1,5 +1,9 @@
 # vue-freemde
 
+[![NPM](https://nodei.co/npm/vue-freemde.png)](https://nodei.co/npm/vue-freemde/)
+
+## What it is
+
 > A Vue Markdown Editor for Custom Editing and Rendering
 
 ![2018-12-15 23.56.19.gif](https://i.loli.net/2018/12/15/5c1524a6ee897.gif)
@@ -53,7 +57,13 @@ export default {
           },
           className: 'fa fa-save',
           title: 'Save'
-      }]
+      }],
+      inlineAttachmentOptions: {
+        onFileReceived (file) {
+          // upload to your server, get image url...
+          this.settings.setAttachmentUrl(url, this)
+        }
+      }
       }
     }
   },
