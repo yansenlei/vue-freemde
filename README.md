@@ -1,6 +1,8 @@
 # vue-freemde
 
-[![NPM](https://nodei.co/npm/vue-freemde.png)](https://nodei.co/npm/vue-freemde/)
+[![npm version](https://badge.fury.io/js/vue-freemde.svg)](https://badge.fury.io/js/vue-freemde)
+[![Build Status](https://travis-ci.org/yansenlei/vue-freemde.svg?branch=master)](https://travis-ci.org/yansenlei/vue-freemde)
+[![license](https://img.shields.io/npm/l/express.svg)](https://github.com/yansenlei/vue-freemde/blob/master/LICENSE)
 
 ## What it is
 

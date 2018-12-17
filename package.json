@@ -16,7 +16,7 @@
     "build:min": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "freemde": "^0.0.2"
+    "freemde": "0.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
