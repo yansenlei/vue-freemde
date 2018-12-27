@@ -8,6 +8,8 @@
 
 > A Vue Markdown Editor for Custom Editing and Rendering
 
+Live Demo: [try coding with jsfiddle](https://jsfiddle.net/leiys/s2jw8ode/)
+
 ![2018-12-15 23.56.19.gif](https://i.loli.net/2018/12/15/5c1524a6ee897.gif)
 
 ## install

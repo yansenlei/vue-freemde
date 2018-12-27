@@ -8,8 +8,9 @@
 
 <script>
 import VueFreemde from '../Freemde'
-import mdr from '/Users/leiys/gitspace/markdown-core/dist2/mdc.min.js'
+// import mdr from '@xtalpi/free-markdown-core/src/index-browser'
 // import marked from 'marked'
+// import '@xtalpi/free-markdown-core/dist/mdr.min.css'
 import axios from 'axios'
 export default {
   name: 'App',
@@ -38,20 +39,21 @@ export default {
           className: 'fa fa-question-circle',
           title: 'link'
         }],
-        markdown (text, side) {
-          // return marked(text)
-          return `<div class="markdown-body">${mdr.render(text)}</div>`
-        },
-        view (text, side) {
-          mdr.view(text, side)
-          // custom open_link
-          document.querySelectorAll('.custom_link_open').forEach(element => {
-            element.addEventListener('click', (e) => {
-              console.log(e.target)
-              window.open(e.target.getAttribute('_href'))
-            })
-          })
-        },
+        // markdown (text, side) {
+        //   // return marked(text)
+        //   return `<div class="markdown-body">${mdr.render(text)}</div>`
+        // },
+        // view (text, side) {
+        //   console.log(side)
+        //   mdr.view(text, side)
+        //   // custom open_link
+        //   document.querySelectorAll('.custom_link_open').forEach(element => {
+        //     element.addEventListener('click', (e) => {
+        //       console.log(e.target)
+        //       window.open(e.target.getAttribute('_href'))
+        //     })
+        //   })
+        // },
         syncSideBySidePreviewScroll: true,
         inlineAttachmentOptions: {
           onFileReceived (file) {
@@ -73,28 +75,28 @@ export default {
     }
   },
   created () {
-    // Remember old renderer, if overriden, or proxy to default renderer
-    var defaultRender = mdr.renderer.rules.link_open || function (tokens, idx, options, env, self) {
-      return self.renderToken(tokens, idx, options)
-    }
-    mdr.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-      // If you are sure other plugins can't add `target` - drop check below
-      if (tokens[idx] && typeof tokens[idx].attrIndex === 'function') {
-        var aIndex = tokens[idx].attrIndex('target')
-        console.log(tokens[idx].attrGet('href'), tokens[idx].attrGet('_href'))
-        if (aIndex < 0) {
-          tokens[idx].attrPush(['target', '_blank']) // add new attribute
-          tokens[idx].attrSet('_href', tokens[idx].attrGet('href'))
-          tokens[idx].attrSet('href', 'javascript:void(0);')
-          tokens[idx].attrSet('class', 'custom_link_open')
-        } else {
-          tokens[idx].attrs[aIndex][1] = '_blank' // replace value of existing attr
-        }
-      }
+    // // Remember old renderer, if overriden, or proxy to default renderer
+    // var defaultRender = mdr.renderer.rules.link_open || function (tokens, idx, options, env, self) {
+    //   return self.renderToken(tokens, idx, options)
+    // }
+    // mdr.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+    //   // If you are sure other plugins can't add `target` - drop check below
+    //   if (tokens[idx] && typeof tokens[idx].attrIndex === 'function') {
+    //     var aIndex = tokens[idx].attrIndex('target')
+    //     console.log(tokens[idx].attrGet('href'), tokens[idx].attrGet('_href'))
+    //     if (aIndex < 0) {
+    //       tokens[idx].attrPush(['target', '_blank']) // add new attribute
+    //       tokens[idx].attrSet('_href', tokens[idx].attrGet('href'))
+    //       tokens[idx].attrSet('href', 'javascript:void(0);')
+    //       tokens[idx].attrSet('class', 'custom_link_open')
+    //     } else {
+    //       tokens[idx].attrs[aIndex][1] = '_blank' // replace value of existing attr
+    //     }
+    //   }
 
-      // pass token to default renderer.
-      return defaultRender(tokens, idx, options, env, self)
-    }
+    //   // pass token to default renderer.
+    //   return defaultRender(tokens, idx, options, env, self)
+    // }
   },
   components: {
     VueFreemde
@@ -103,7 +105,7 @@ export default {
 </script>
 
 <style scoped>
-@import '/Users/leiys/gitspace/markdown-core/dist2/mdc.min.css';
+/* @import '/Users/leiys/gitspace/markdown-core/dist/mdr.min.css'; */
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

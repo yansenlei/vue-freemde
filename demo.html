@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>vue-freemde</title>
+    <style>
+      #app {
+        display: flex;
+        justify-content: center;
+      }
+      #app>.container {
+        width: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div class="information-box">
+          <h1>vue-freemde</h1>
+          <ul>
+            <li>Custom markdown renderer hook. default use marked renderer.</li>
+            <li>Add Paste Image.</li>
+            <li>Add view render hook.</li>
+          </ul>
+          <p><a href="https://badge.fury.io/js/vue-freemde" rel="nofollow"><img src="https://camo.githubusercontent.com/3b9125976bf231cf74edc696b614a8e53330cc89/68747470733a2f2f62616467652e667572792e696f2f6a732f7675652d667265656d64652e737667" alt="npm version" data-canonical-src="https://badge.fury.io/js/vue-freemde.svg" style="max-width:100%;"></a>
+            <a href="https://travis-ci.org/yansenlei/vue-freemde" rel="nofollow"><img src="https://camo.githubusercontent.com/cc79bbbe84930730fde0f0f103f81bc540ccbe67/68747470733a2f2f7472617669732d63692e6f72672f79616e73656e6c65692f7675652d667265656d64652e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/yansenlei/vue-freemde.svg?branch=master" style="max-width:100%;"></a>
+            <a href="https://github.com/yansenlei/vue-freemde/blob/master/LICENSE"><img src="https://camo.githubusercontent.com/a54c47c4dc66472c38a6d33b1833d9f6e5adfc8b/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f657870726573732e737667" alt="license" data-canonical-src="https://img.shields.io/npm/l/express.svg" style="max-width:100%;"></a></p>
+        </div>
+        <vue-freemde
+          v-model="data"
+          ref="Markdown"
+          :configs="configs"
+        ></vue-freemde>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@2.5.21/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-freemde@0.0.8/dist/vue-freemde.min.js"></script>
+    <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+    <script>
+      Vue.use(VueFreemde);
+      var app = new Vue({
+        el: "#app",
+        data() {
+          return {
+            message: "Hello Vue!",
+            data: `## A Vue Markdown Editor for Custom Editing and Rendering
+
+- you can drag/paste image file to here.
+
+- you can custom your markdown renderer.
+
+- you can config your editor toolbar.
+
+let's try coding: [here](https://jsfiddle.net/leiys/s2jw8ode/)
+
+any question: [here](https://github.com/yansenlei)`,
+            configs: {
+              spellChecker: false,
+              autofocus: true,
+              toolbar: [
+                "bold",
+                "italic",
+                "strikethrough",
+                "|",
+                "link",
+                "image",
+                "|",
+                "preview",
+                "fullscreen",
+                "side-by-side",
+                "|",
+                {
+                  name: "custom",
+                  action: markdown => {
+                    const data = markdown.value();
+                    console.log(data)
+                    alert('save')
+                  },
+                  className: "fa fa-save",
+                  title: "Save",
+                },
+                {
+                  name: "custom",
+                  action: markdown => {
+                    window.open("https://www.github.com/yansenlei")
+                  },
+                  className: "fa fa-question-circle",
+                  title: "help",
+                },
+              ],
+              // markdown(text, side) {
+              //   return `<div class="markdown-body">${mdr.render(text)}</div>`;
+              // },
+              // view(text, side) {
+              //   if (text) {
+              //     mdr.view(text, side);
+              //     // custom open_link
+              //     initMarkdownLinkEvent(side);
+              //     // self.editor.codemirror.refresh()
+              //   }
+              // },
+              syncSideBySidePreviewScroll: true,
+              inlineAttachmentOptions: {
+                onFileReceived(file) {
+                  const formData = new FormData()
+                  formData.append('smfile', file)
+                  axios({
+                    method: 'post',
+                    url: 'https://sm.ms/api/upload',
+                    data: formData
+                  }).then(res => {
+                    let data = res.data.data
+                    this.settings.setAttachmentUrl(data.url, this)
+                  }).catch(error => {
+                    console.log(error)
+                  })
+                },
+              },
+            },
+          };
+        },
+      });
+    </script>
+  </body>
+</html>
