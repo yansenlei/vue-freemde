@@ -1,6 +1,6 @@
 {
   "name": "vue-freemde",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A Vue Markdown Editor for Custom Editing and Rendering",
   "author": "yansenlei <leiyswork@gmail.com>",
   "main": "src/Freemde.vue",

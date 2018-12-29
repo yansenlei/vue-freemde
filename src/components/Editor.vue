@@ -67,7 +67,6 @@ export default {
         },
         this.configs
       )
-      console.log(this.configs)
       // 同步 value 和 initialValue 的值
       if (configs.initialValue) {
         this.$emit('input', configs.initialValue)
@@ -79,7 +78,6 @@ export default {
       // 设置是否渲染输入的html
       // marked.setOptions({ sanitize: this.sanitize });
       // 实例化编辑器
-      debugger
       if (this.editor) {
         this.editor = null
       }

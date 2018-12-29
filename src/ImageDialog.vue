@@ -20,13 +20,11 @@ export default {
   },
   methods: {
     init (target) {
-      debugger
       const allImg = target.querySelectorAll('img')
       if (allImg.length > 0) {
         allImg.forEach(element => {
           try {
             element.addEventListener('click', (e) => {
-              debugger
               this.showIndex = -1
               for (let i = 0; i < allImg.length; i++) {
                 if (allImg[i] === element) {

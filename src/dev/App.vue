@@ -67,7 +67,7 @@ export default {
               let data = res.data.data
               this.settings.setAttachmentUrl(data.url, this)
             }).catch(error => {
-              console.log(error)
+              console.error(error)
             })
           }
         }
