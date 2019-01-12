@@ -91,7 +91,7 @@ export default {
 
 ### Configs
 
-- **markdown**: Custom markdown renderer hook. default use marked renderer.
+- **markdown**: Custom markdown renderer hook. default use `marked` renderer.
 - **view**: The rendered callback hook, Used for binding events or element-based rendering.
 - **inlineAttachmentOptions**: Paste Image Parameters.
   - **onFileReceived**: Paste Image Received, param: `file`.

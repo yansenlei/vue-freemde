@@ -1,5 +1,8 @@
 var path = require('path')
 var webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const vueLoaderConfig = require('./build/vue-loader.conf')
 
 const ASSET_PATH = process.env.ASSET_PATH || './dist/';
 
@@ -25,11 +28,7 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          loaders: {
-          }
-          // other vue-loader options go here
-        }
+        options: vueLoaderConfig
       },
       {
         test: /\.js$/,
@@ -58,9 +57,16 @@ module.exports = {
     overlay: true
   },
   performance: {
-    hints: false
+    hints: process.env.NODE_ENV === 'production' ? "warning" : false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        sourceMap: true
+      })
+    ]
+  }
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -73,14 +79,9 @@ if (process.env.NODE_ENV === 'production') {
         ASSET_PATH: JSON.stringify(ASSET_PATH)
       } 
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
+    new VueLoaderPlugin
   ])
 }
