@@ -8,9 +8,7 @@
 
 <script>
 import VueFreemde from '../Freemde'
-// import mdr from '@xtalpi/free-markdown-core/src/index-browser'
 // import marked from 'marked'
-// import '@xtalpi/free-markdown-core/dist/mdr.min.css'
 import axios from 'axios'
 export default {
   name: 'App',
@@ -19,14 +17,7 @@ export default {
       data: '',
       zoomValue: 50,
       configs: {
-        toolbar: ['bold', 'italic', 'strikethrough', '|', 'link', 'image', {
-          name: 'custom',
-          action: (markdown) => {
-            markdown.codemirror.replaceSelection('\n```smiles\nNCC1(CC([O])=O)CCCCC1\n```\n')
-          },
-          className: 'fa fa-fire',
-          title: 'Smiles'
-        }, '|', 'preview', 'fullscreen', 'side-by-side', '|', {
+        toolbar: ['bold', 'italic', 'strikethrough', '|', 'link', 'image', '|', 'preview', 'fullscreen', 'side-by-side', '|', {
           name: 'custom',
           action: () => {
             alert('Save')

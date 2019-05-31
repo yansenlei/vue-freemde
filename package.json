@@ -1,6 +1,6 @@
 {
   "name": "vue-freemde",
-  "version": "0.0.14",
+  "version": "0.1.0",
   "description": "A Vue Markdown Editor for Custom Editing and Rendering",
   "author": "yansenlei <leiyswork@gmail.com>",
   "main": "src/Freemde.vue",
@@ -16,7 +16,7 @@
     "build:min": "cross-env NODE_ENV=production --mode=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "freemde": "0.0.6"
+    "freemde": "^2.5.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

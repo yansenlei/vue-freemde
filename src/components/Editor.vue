@@ -104,7 +104,7 @@ export default {
       this.editor.codemirror.on('change', () => {
         const text = this.editor.value()
         this.$emit('input', text)
-        this.html = this.editor.markdown(text)
+        // this.html = this.editor.markdown(text)
       })
     },
     addPreviewClass (className) {
